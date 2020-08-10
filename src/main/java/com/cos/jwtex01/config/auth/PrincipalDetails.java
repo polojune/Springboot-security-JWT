@@ -17,7 +17,7 @@ public class PrincipalDetails implements UserDetails {
 	}
     
     public User getUser() {
-    	return this.user;
+    	return user;
     }
 
 	@Override
@@ -32,19 +32,16 @@ public class PrincipalDetails implements UserDetails {
 
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
 		return user.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
 		return user.getUsername();
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

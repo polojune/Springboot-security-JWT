@@ -20,10 +20,7 @@ public class PrincipalDetailsService implements UserDetailsService{
 		System.out.println("PrincipalService: 진입");
 		System.out.println(username);
 		User user = userRepository.findByUsername(username);
-		
-		if(user == null) {
-			System.out.println("user null");
-		}
+	
 		return new PrincipalDetails(user);
 		
 	} 

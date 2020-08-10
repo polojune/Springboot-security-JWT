@@ -2,6 +2,9 @@ package com.cos.jwtex01.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cos.jwtex01.config.auth.PrincipalDetails;
+import com.cos.jwtex01.config.auth.SessionUser;
 import com.cos.jwtex01.model.User;
 import com.cos.jwtex01.repository.UserRepository;
 
@@ -24,6 +29,18 @@ public class RestApiController {
 	
 	private final UserRepository userRepository; 
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@GetMapping("user")
+	public String user(Authentication authentication) {
+	    PrincipalDetails principal = (PrincipalDetails) authentication.getPrincipal();
+		System.out.println("principal:" + principal.getUser().getId());
+		System.out.println("principal:" + principal.getUser().getUsername());
+		System.out.println("principal:" + principal.getUser().getPassword());
+		System.out.println("principal:" + principal.getUser().getRoles());
+		
+		return "<h1>user</h1>";
+	}
+	
 	
 	//모든 사람이 접근 가능
 	@GetMapping("home") 
